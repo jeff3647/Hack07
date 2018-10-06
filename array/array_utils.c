@@ -13,25 +13,42 @@ int contains(const int *arr, int size, int x) {
   printf("x is not in this array\n");
   return 0;
 }
+ 
+ int containsWithin(const int *arr, int size, int x, int i, int j){
+	int k;
+	for(k = i; k <= j; k++){
+		if(x == arr[k]){
+			printf("%d is within the indices (%d, %d).\n", x, i, j);
+			return 0;
+		}
+	}
+	printf("%d is not within the indices (%d, %d).\n", x, i, j);
+	return 0;
+ }
 
-int *paddedCopy(const int *arr, int oldSize, int newSize) {
-  if (newSize < oldSize) {
-    int *deepCopy = (int *)malloc(sizeof(int) * newSize);
-    return 0;
-  }
-  int i = 0, n, k;
-  int *deepCopy = (int *)malloc(sizeof(int) * newSize);
-  if (newSize > oldSize) {
-    for (i = 0; i < oldSize; i++) {
+
+int * paddedCopy(const int *arr, int oldSize, int newSize){
+	int * deepCopy = (int *) malloc(sizeof(int) * newSize);
+	int i = 0, n, k;
+	if(newSize <= oldSize){
+		for(i = 0; i < newSize; i++){
+			deepCopy[i] = arr[i];
+		}
+	}
+if(newSize > oldSize){
+    //int * deepCopy = (int *) malloc(sizeof(int) * newSize);
+    for(i = 0; i <= oldSize; i++){
       deepCopy[i] = arr[i];
     }
-    for (i = oldSize - 1; i < newSize; i++) {
-      deepCopy[i] = 0;
+    for(k = oldSize; k <= newSize; k++){
+      deepCopy[k] = 0;
+    //  printf("%d, %d",k,deepCopy[k] );
     }
-    for (i = 0; i < newSize; i++) {
-      printf("arr[%d]=%d\n", i, deepCopy[i]);
-    }
-  }
+}
+for(i = 0; i < newSize; i++){
+  printf("arr[i] = %d\n", deepCopy[i]);
+}
+	return 0;
 }
 
 void reverse(int *arr, int size) {
