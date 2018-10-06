@@ -18,23 +18,41 @@ int contains(const int *arr, int size, int x){
 
 int * paddedCopy(const int *arr, int oldSize, int newSize){
 if(newSize<oldSize){
-  int*paddedCopy=(int*)malloc(sizeof(int)*newSize);
+  int*deepCopy=(int*)malloc(sizeof(int)*newSize);
   return 0;//only therst
 //newSize elements should be copied over.
 }
 int i=0,n,k;
+int*deepCopy=(int*)malloc(sizeof(int)*newSize);
 if(newSize>oldSize){
-    int*deepCopy=(int*)malloc(sizeof(int)*newSize);
+
     for(i=0;i<oldSize;i++){
       deepCopy[i]=arr[i];
     }
-    for(k=oldSize;k<newSize;k++){
-      deepCopy[k]=0;
-    //  printf("%d, %d",k,deepCopy[k] );
+    for(i=oldSize-1;i<newSize;i++){
+      deepCopy[i]=0;
     }
+    for(i=0;i<newSize;i++){
+      printf("arr[%d]=%d\n", i, deepCopy[i]);
+    }
+
 }
-for(i=0;i<=newSize;i++){
-  printf("arr[i]=%d\n", arr[i]);
+
 }
+
+
+void reverse(int *arr, int size){
+int i,temp1,temp2;
+for(i=0;i<=(double)size/2;i++){
+  arr[i]=temp1;
+  arr[size-i]=temp2;
+  temp2=arr[i];
+  temp1=arr[size-i];
+  printf("%d,\n", arr[i]);
+}
+for(i=0;i<=size;i++){
+  printf("arr[%d]=%d\n",i, arr[i]);
+}
+
 
 }
