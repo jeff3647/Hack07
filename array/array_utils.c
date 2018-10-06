@@ -36,23 +36,43 @@ if(newSize>oldSize){
       printf("arr[%d]=%d\n", i, deepCopy[i]);
     }
 
-}
+  }
 
-}
+  }
 
 
 void reverse(int *arr, int size){
 int i,temp1,temp2;
-for(i=0;i<=(double)size/2;i++){
+for(i=0;i<=size/2;i++){
+temp2=arr[i];
+temp1=arr[size-1-i];
+
   arr[i]=temp1;
-  arr[size-i]=temp2;
-  temp2=arr[i];
-  temp1=arr[size-i];
-  printf("%d,\n", arr[i]);
+  //printf("%d\n",arr[i] );
+  arr[size-i-1]=temp2;
+
 }
-for(i=0;i<=size;i++){
+for(i=0;i<size;i++){
   printf("arr[%d]=%d\n",i, arr[i]);
 }
+}
 
+int * reverseCopy(const int *arr, int size){
+  int i,temp1,temp2;
+  int*reCopy=(int*)malloc(sizeof(int)*size);
+  for(i=0;i<size; i++){
+    reCopy[i]=arr[i];
+  }
+  for(i=0;i<=size/2;i++){
+    temp2=reCopy[i];
+    temp1=reCopy[size-1-i];
 
+    reCopy[i]=temp1;
+    reCopy[size-i-1]=temp2;
+
+  }
+for(i=0;i<size;i++){
+    printf("arr[%d]=%d\n",i,reCopy[i]);
+  }
+  return reCopy;
 }

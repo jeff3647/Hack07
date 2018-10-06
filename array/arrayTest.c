@@ -16,7 +16,9 @@ int main(int argc,char** argv){
     scanf("%d",&arr[i]);
   }
 contains(arr, size, x);*/
-int oldSize, newSize;
+
+
+/*int oldSize, newSize;
 scanf("%d", &oldSize);
 scanf("%d", &newSize);
 
@@ -26,10 +28,20 @@ for (i=0; i<oldSize;i++){
   printf("Please input your number");
   scanf("%d",&arr[i]);
 }
-paddedCopy(arr,oldSize, newSize);
+paddedCopy(arr,oldSize, newSize);*/
 
+int i,size;
+printf("Please input number of your array\n");
+scanf("%d",&size );
 
+int *arr = (int*)malloc(sizeof(int)*size);
+for (i=0; i<size;i++){
+  printf("Please input your number");
+  scanf("%d",&arr[i]);
+}
 
+ //reverse (arr, size);
+ reverseCopy(arr, size);
 
   return 0;
 }
