@@ -1,6 +1,6 @@
 /*
 Title: Hack07
-Group: Jeffrey Park(hpark), XinYi, Alex
+Group: Jeffrey Park(hpark), XinYi Zhu, Alex Anson
 Date: 10/05/18
 
 Description: Function prototypes are stored in imageUtils.h

@@ -1,6 +1,6 @@
 /*
 Title: Hack07
-Group: Jeffrey Park(hpark), XinYi, Alex
+Group: Jeffrey Park(hpark), XinYi Zhu, Alex Anson
 Date: 10/05/18
 
 Description: This program will flip the image into three different ways
