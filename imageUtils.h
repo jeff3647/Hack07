@@ -1,3 +1,11 @@
+/*
+Title: Hack07
+Group: Jeffrey Park(hpark), XinYi, Alex
+Date: 10/05/18
+
+Description: Function prototypes are stored in imageUtils.h
+*/
+
 
 /**
  * A structure that represents a single pixel value using
@@ -27,21 +35,32 @@ Pixel **loadImage(const char *filePath, int *height, int *width);
 void saveImage(const char *filePath, Pixel **image, int height, int width);
 
 /**
- * TODO: add documentation
+ *copyImage*
+ *parametres: filePath, height, width
+ *The function will return copyImage(copy of loaded image)
  */
 Pixel ** copyImage(Pixel **image, int height, int width);
 
 /**
- * TODO: add documentation
+ *flipHorizontal*
+ *parametres: image, height, width
+ *The function will flip image horizontally
+ *Return type: void
  */
 void flipHorizontal(Pixel **image, int height, int width);
 
 /**
- * TODO: add documentation
+ *flipVertical*
+ *parametres: image, height, width
+ *The function will flip image vertically
+ *Return type: void
  */
 void flipVertical(Pixel **image, int height, int width);
 
 /**
- * TODO: add documentation
+ *rotateClockwise*
+ *parametres: image, height, width
+ *The fucntion will rotate image clockwise -> 90 degrees rotation
+ *Return type: newImage //since the width and height will also be changed accordingly
  */
 Pixel ** rotateClockwise(Pixel **image, int height, int width);

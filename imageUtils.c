@@ -1,3 +1,18 @@
+/*
+Title: Hack07
+Group: Jeffrey Park(hpark), XinYi, Alex
+Date: 10/05/18
+
+Description: This program will flip the image into three different ways
+1) Horizontal flip
+2) Vertical flip
+3) Clockwise flip (90 degrees)
+
+There are other functions as well
+* loadImage
+* copyImage
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -9,6 +24,7 @@
 
 #include "imageUtils.h"
 
+/*It will load image and put colors by RGB*/
 Pixel **loadImage(const char *filePath, int *height, int *width) {
   int x,y,n;
   unsigned char *data = stbi_load(filePath, &x, &y, &n, 4); //4 = force RGBA channels
@@ -16,13 +32,13 @@ Pixel **loadImage(const char *filePath, int *height, int *width) {
   *width = x;
 
   //contiguous allocation:
-  Pixel **image = (Pixel **)malloc(sizeof(Pixel *) * y);
+	Pixel **image = (Pixel **)malloc(sizeof(Pixel *) * y);
   
-  image[0] = (Pixel *)malloc(sizeof(Pixel) * (y * x));
-  int i;
-  for(i = 1; i < y; i++) {
-    image[i] = (*image + (x * i));
-  }
+	image[0] = (Pixel *)malloc(sizeof(Pixel) * (y * x));
+	int i;
+	for(i = 1; i < y; i++) {
+		image[i] = (*image + (x * i));
+	}
 
   int rowIndex = 0;
   int colIndex = 0;
@@ -43,7 +59,6 @@ Pixel **loadImage(const char *filePath, int *height, int *width) {
 }
 
 void saveImage(const char *fileName, Pixel **image, int height, int width) {
-
   // Convert height x width Pixel array to single array with
   // 3 (RGB) channels, ignoring the alpha channel and assume 100% opaque
   unsigned char *data = (unsigned char *) malloc(height * width * 3);
@@ -62,19 +77,39 @@ void saveImage(const char *fileName, Pixel **image, int height, int width) {
   free(data);
   return;
 }
-
+/*This function will copy the image and return new copyImage*/
 Pixel ** copyImage(Pixel **image, int height, int width) {
-  //TODO: implement
+	//TODO: implement
+	int x = width;
+	int y = height;
+	
+	Pixel **copyImage = (Pixel **)malloc(sizeof(Pixel *) * y);
   
+	copyImage[0] = (Pixel *)malloc(sizeof(Pixel) * (y * x));
+	int i;
+	for(i = 1; i < y; i++) {
+		copyImage[i] = (*copyImage + (x * i));
+	}
+	
+	/*Double for-loops are used to copy every value in 2D array of image*/
+	int a, b;
+	for(a = 0; a < height; a++){
+		for(b = 0; b < width; b++){
+			copyImage[a][b] = image[a][b];
+		}
+	}
+	
+	return copyImage;
 }
 
+/*The code will flip the image horizontally*/
 void flipHorizontal(Pixel **image, int height, int width) {
 	//TODO: implement
 	int w, h, i;
 	Pixel a;
 	for(h = 0; h < height; h++){
 		i = 0;
-		for(w = width - 1; w > width / 2; w--){
+		for(w = width - 1; w >= width / 2; w--){
 			a = image[h][i];
 			image[h][i] = image[h][w];
 			image[h][w] = a;
@@ -85,6 +120,7 @@ void flipHorizontal(Pixel **image, int height, int width) {
 	return;
 }
 
+/*This function will flip image vertically*/
 void flipVertical(Pixel **image, int height, int width) {
   //TODO: implement
   int h, w, i;
@@ -101,27 +137,34 @@ void flipVertical(Pixel **image, int height, int width) {
   return;
 }
 
+/*This function will rotate image in 90 degrees, return the new image
+ *The function has different width and height (height will be width and width will be height)
+*/
 Pixel ** rotateClockwise(Pixel **image, int height, int width) {
-  //TODO: implement
-	//Pixel **newImage[width][height]; //create new 2D array
-	
+	//TODO: implement
+	//Convert height and width
+	int x = height;
+	int y = width;
+	Pixel **newImage = (Pixel **)malloc(sizeof(Pixel *) * y);
+  
+	newImage[0] = (Pixel *)malloc(sizeof(Pixel) * (y * x));
 	int i;
-	Pixel **newImage = (Pixel **)malloc(sizeof(Pixel *) * width);
-	newImage[0] = (Pixel *)malloc(sizeof(Pixel) * (width * height));
-	for(i = 1; i < width; i++) {
-		newImage[i] = (*newImage + (height * i));
+	for(i = 1; i < y; i++) {
+		newImage[i] = (*newImage + (x * i));
+	}
+	
+	/* This where it will rotate clock-wise */
+	int h, w;
+	int j = height - 1;
+	for(h = 0; h < height; h++){
+		//j = j - h;
+		for(w = 0; w < width; w++){
+			Pixel c = image[h][w];
+			newImage[w][j] = c;
+			
+		}
+		j--;
 	}
 
-	
-	
-	int h, w;
-	for(w = 0; w < width; w++){
-		i = 0;
-		for(h = height - 1; h >= 0; h--){
-			newImage[w][h] = image[i][w];
-			i++;
-		}
-	}
-	
 	return newImage;
 }
